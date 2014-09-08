@@ -1,0 +1,15 @@
+<h1>My BlogOnRails</h1>
+
+<%= link_to "Create a New Article", new_article_path, class: 'new_article' %>
+
+<ul id="articles">
+  <% @articles.each do |article| %>
+    <li>
+      <%= link_to article.title, article_path(article), class: 'article_title', id: 'article_{article.id}' %>
+      <%= link_to "Edit", edit_article_path(article) %>
+      <%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Really delete the article?"} %>
+    </li>
+  <% end %>
+</ul>
+
+
