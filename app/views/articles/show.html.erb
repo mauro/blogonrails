@@ -1,6 +1,11 @@
 <h1><%= @article.title %></h1>
 <%= link_to "Home", articles_path, class: "new_article" %>
-<p><%= @article.body %></p>
+<p>
+  <% if @article.image.exists? %>
+    <%= image_tag @article.image.url %>
+  <% end %>
+  <%= @article.body %>
+</p>
 <hr />
 <h3>Tags</h3>
 <p>
