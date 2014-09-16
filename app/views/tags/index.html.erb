@@ -1,0 +1,18 @@
+<h1>My Tags</h1>
+
+<%= link_to "Home", articles_path, class: 'new_article' %>
+
+<ul id="articles">
+  <% @tags.each do |tag| %>
+    <li>
+      <span style="float:right">
+        <%= link_to "Edit", edit_tag_path(tag) %>
+        |
+        <%= link_to "Destroy", tag_path(tag), method: :delete, data: {confirm: "Really delete the tag?"} %>
+      </span>
+      <%= link_to tag.name.capitalize, tag_path(tag), class: 'article_title' %>
+    </li>
+  <% end %>
+</ul>
+
+

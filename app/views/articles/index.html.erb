@@ -5,11 +5,19 @@
 <ul id="articles">
   <% @articles.each do |article| %>
     <li>
+      <span style="float:right">
+        <%= link_to "Edit", edit_article_path(article) %> |
+        <%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Really delete the article?"} %>
+   	  </span>
       <%= link_to article.title, article_path(article), class: 'article_title', id: 'article_{article.id}' %>
-      <%= link_to "Edit", edit_article_path(article) %>
-      <%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Really delete the article?"} %>
     </li>
   <% end %>
 </ul>
+<span style="float:none; clear:both" /><br/><br/></span>
+
+<h2>
+<%= link_to "All Tags", :tags %>
+</h2>
+
 
 
