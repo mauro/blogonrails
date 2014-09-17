@@ -7,10 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div style="float:right;text-align:right;background-color:white;z-index:999;margin-top:-60px;padding:10px;border-radius: 10px">
+<h6>
+        <% if logged_in? %>
+          <%= "Hello, #{current_user.email}" %>
+          <%= link_to "(logout)", logout_path %>
+        <% else %>
+          <%= link_to "(login)", login_path %>
+        <% end %>
+</h6>
+</div>
 
 <p class="flash"><%= flash.notice %></p>
 
 <%= yield %>
+
 
 </body>
 </html>

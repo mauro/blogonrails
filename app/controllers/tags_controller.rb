@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
  include TagsHelper
+ 
+ before_filter :require_login, except: [:index, :show]
 
   def index
     @tags = Tag.all
