@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   include ArticlesHelper
   
   before_filter :require_login, except: [:index, :show]
+  before_filter :prepare_authors
 
   def index
     @articles = Article.all
@@ -12,10 +13,14 @@ class ArticlesController < ApplicationController
     
     @comment = Comment.new
     @comment.article_id = @article.id
+    
+    @author = Author.find(@article.author_id)
+
   end
 
   def new
     @article = Article.new
+    @article.author_id = current_user.id
   end
   
   def create
@@ -35,6 +40,7 @@ class ArticlesController < ApplicationController
   
   def edit
     @article = Article.find(params[:id])
+    @author = Author.find(@article.author_id)
   end
   
   def update
@@ -44,6 +50,10 @@ class ArticlesController < ApplicationController
     flash.notice = "Article '#{@article.title}' updated!"
     
     redirect_to article_path(@article)
+  end
+  
+  def prepare_authors
+    @authors = Author.all
   end
 
 end

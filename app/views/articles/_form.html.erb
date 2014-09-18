@@ -25,6 +25,10 @@
     <%= f.text_field :tag_list %>
   </p>
   <p>
+    <%= f.label :author %>
+    <%= f.collection_select(:author_id, @authors, :id, :username) %>
+  </p>
+  <p>
     <%= f.submit %>
     &nbsp;<%= link_to "Cancel", articles_path %>
   </p>
